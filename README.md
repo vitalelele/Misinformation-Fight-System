@@ -58,7 +58,7 @@ Attivare l'ambiente virtuale: <br><br>
 
   <br>
 		
- <p>Attivato l'ambiente virtuale installare le seguneti librerie di python, necessarie per il funzionamento del software:</p>
+ <p>Attivato l'ambiente virtuale installare le seguenti librerie di python, necessarie per il funzionamento del software:</p>
  
  	Flask: 
   		pip install flask
