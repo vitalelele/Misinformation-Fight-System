@@ -31,3 +31,7 @@ Installato mysql si dovrà eseguire lo script per creare il database dell'applic
 	-modificare la password nel file dataAccessObject.py
 Per esguire l'applicazione utilizzare il seguente comando: python app.py
 
+
+<h1>🌐 Collaborators:</h1>
+<a href="github.com/vitalelele"> Antonio Vitale </a>
+Github LinkedIn
