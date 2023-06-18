@@ -6,7 +6,7 @@ from models.segnalazione import Segnalazione
 from controls.gestioneAmministratore import GestioneAmministratore
 from dataAccessObject import DataAccessObject
 
-# io non ho ice perché ho già tutto il permafrost 
+
 class vistaAmministratore(View):
 
     def dispatch_request(self):
