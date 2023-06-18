@@ -1,0 +1,122 @@
+{% block content %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		{% if session['isGiornalista'] %}
+		<title>MFS by Software Chasers - Giornalista</title>
+		{% else %}
+		<title>MFS by Software Chasers - Utente</title>
+		{% endif %}
+
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../static/assetsNotizia/css/main.css" />
+		<noscript><link rel="stylesheet" href="../static/assetsNotizia/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<a href="{{ url_for('notizia')}}" class="logo"><strong>MFS</strong> <span>by Software Chasers</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							{% if session['isGiornalista'] %}
+							<li><h6>Sei un <i><b>giornalista</b></i> <u>verificato</u></h6></li>
+							{% else %}
+							<li><h6>Sei un <i><b><u>utente</u></b></i> </h6></li>
+							{% endif %}
+
+							<li><a href="{{ url_for('notizia') }}">Home</a></li>
+							<li><a href="{{ url_for('notiziaTesto') }}">Notizia testuale</a></li>
+							<li><a href="{{ url_for('notiziaImmagine') }}">Immagine</a></li>
+							<li><a href="{{ url_for('notiziaAudio') }}">Audio</a></li>
+							<li><a href="{{ url_for('notiziaVideo') }}">Video</a></li>
+						</ul>
+						<ul class="actions stacked">
+							<li><a href="{{ url_for('logout') }}" class="button fit">Logout</a></li>
+						</ul>
+					</nav>
+
+				<!-- Banner -->
+					<section id="banner" class="major">
+						<div class="inner">
+							<header class="major">
+								<h1>Ciao, bentornato <em><u>{{ session['username'] }}</u><em></h1>
+							</header>
+							<div class="content">
+								<p>Siamo felici di rivederti,<br>
+								scegli che tipo di notizia vuoi analizzare.</p>
+							</div>
+						</div>
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one" class="tiles">
+								<article>
+									<span class="image">
+										<img src="../static/assetsNotizia/images/notiziaTestuale.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{{ url_for('notiziaTesto') }}" class="link">Notizia testuale</a></h3>
+										<p>Vuoi analizzare un testo o un url?</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="../static/assetsNotizia/images/deepFake.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{{ url_for('notiziaImmagine') }}" class="link">Immagine</a></h3>
+										<p>In giro ci sono tanti deep fake, ne vuoi verificare uno?</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="../static/assetsNotizia/images/spettroAudio.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{{ url_for('notiziaAudio') }}" class="link">Audio</a></h3>
+										<p>Clicca qui per analizzare un audio.</p>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="../static/assetsNotizia/images/fakeVideo.jpg" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{{ url_for('notiziaVideo')}}" class="link">Video</a></h3>
+										<p>Analizza un video.</p>
+									</header>
+								</article>
+							</section>
+
+					</div>
+
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../static/assetsNotizia/js/jquery.min.js"></script>
+			<script src="../static/assetsNotizia/js/jquery.scrolly.min.js"></script>
+			<script src="../static/assetsNotizia/js/jquery.scrollex.min.js"></script>
+			<script src="../static/assetsNotizia/js/browser.min.js"></script>
+			<script src="../static/assetsNotizia/js/breakpoints.min.js"></script>
+			<script src="../static/assetsNotizia/js/util.js"></script>
+			<script src="../static/assetsNotizia/js/main.js"></script>
+
+	</body>
+</html>
+{% endblock %}

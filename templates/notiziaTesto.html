@@ -1,0 +1,487 @@
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <title>MFS - Notizia testuale</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../static/assetNotiziaTestuale/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="../static/assetNotiziaTestuale/css/fontawesome.css">
+
+  {% if session['isGiornalista']%}
+  <link rel="stylesheet" href="../static/assetNotiziaTestuale/css/templatemo-digimedia-v1.css">
+  {% else %}
+  <link rel="stylesheet" href="../static/assetNotiziaTestuale/css/templatemo-digimedia-v2.css">
+  {% endif %}
+
+  <link rel="stylesheet" href="../static/assetNotiziaTestuale/css/animated.css">
+  <link rel="stylesheet" href="../static/assetNotiziaTestuale/css/owl.css">
+
+</head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo">
+              {% if session['isGiornalista']%}
+              <img src="../static/assetNotiziaTestuale/images/logoGiornalista.png" alt="">
+              {% else %}
+              <img src="../static/assetNotiziaTestuale/images/logoUtente.png" alt="">
+
+              {% endif %}
+
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('notiziaTesto')}}">Testo/URL</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('notiziaImmagine')}}">Immagine</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('notiziaAudio')}}">Audio</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('notiziaVideo')}}">Video</a></li>
+              <li class="scroll-to-section"><a href="{{ url_for('contact') }}">Contattaci</a></li>
+              <li class="scroll-to-section">
+                <div class="border-first-button"><a href="{{ url_for('logout') }}">Logout</a></div>
+              </li>
+            </ul>
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  {% if messSegnalazione == 1: %}
+	<script> alert("Notizia segnalata con successo") </script>
+	{% endif %}
+
+  <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6 align-self-center">
+              <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <form action="{{ url_for('notiziaTesto') }}" method="post" autocomplete="off">
+                      <label for="inputTesto">
+                        <h3>Inserisci il <em>testo/URL:</em></h3>
+                        <p></p>
+                      </label>
+                      {% if notiziaInserita %}
+                      <textarea id="inputTesto" class="form-control" name="inputTesto" rows="5" cols="50"
+                        placeholder="{{ notiziaInserita.getTitolo() }}"></textarea>
+                      {% else %}
+                      <textarea id="inputTesto" class="form-control" name="inputTesto" rows="5" cols="50"></textarea>
+                      {% endif %}
+
+
+                      {% if errore %}
+                      <p>{{ errore }}</p>
+                      {% endif %}
+
+
+                      <p></p>
+                      {% if session['isGiornalista']%}
+                      <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-outline-info" name="calcolaIndice">Verifica
+                          attendibilità</button>
+                        <p style="width: 30px;"></p>
+                        <button type="submit" class="btn btn-outline-info" name="fontiAttendibili">Mostra fonti
+                          attendibili</button>
+                      </div>
+                      {% else %}
+                      <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-outline-warning" name="calcolaIndice">Verifica
+                          attendibilità</button>
+                        <p style="width: 30px;"></p>
+                        <button type="submit" class="btn btn-outline-warning" name="fontiAttendibili">Mostra fonti
+                          attendibili</button>
+                      </div>
+                      {% endif %}
+                  
+
+
+                  </div>
+                  </form> <!-- end form -->
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                {% if session['isGiornalista']%}
+                <img src="../static/assetNotiziaTestuale/images/test.png" alt="">
+                {% else %}
+                <img src="../static/assetNotiziaTestuale/images/test.png" alt="">
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if criteri %}
+  <div id="about" class="about section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="about-left-image  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
+                {% if session['isGiornalista']%}
+                <img src="../static/assetNotiziaTestuale/images/about-dec.png" alt="">
+                {% else %}
+                <img src="../static/assetNotiziaTestuale/images/about-dec-v2.png" alt="">
+                {% endif %}
+
+              </div>
+            </div>
+            <div class="col-lg-6 align-self-center  wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+              <div class="about-right-content">
+                <div class="section-heading">
+
+                  <h4>Ecco qui i tuoi <em>risultati</em></h4>
+                  <div class="line-dec"></div>
+                </div>
+
+                <p>
+                  Ci auguriamo che i risultati forniti dal nostro sistema <i><b>Misinformation Fight System</b></i>
+                  siano di
+                  aiuto per verificare la veridicità della notizia inserita, ci impegnamo
+                  affinché gli utenti possano navigare tra notizie vere e non bufale!
+
+                <ul>
+                  <li>0-30% la notizia risulta essere probabilmente falsa</li>
+                  <li>31-70% non è possibile determinare la veridicità della notizia</li>
+                  <li>71-100% la notizia risulata essere probabilmente vera</li>
+
+                </ul>
+
+                <ul>
+                  <br>
+                  <li><h4>Criteri utilizzati per l'analisi:</h4></li><br>
+                  <li>- Secondo <b>Google Fact Check</b>: {{ criteri[1] }}</li>
+                  <li>- Secondo un <b>modello di analisi testuale</b>: {{ criteri[2] }}</li>
+                  <li>- Analisi sull'<b>url</b>: {{ criteri[3] }}</li>
+                  <li>- {{ criteri[4] }}</li>
+                  <li>- {{ criteri[5] }}</li>
+                </ul>
+                </p>
+
+
+
+                <div class="row">
+                  <div class="col-lg-4 col-sm-4">
+                  </div>
+                  <div class="col-lg-4 col-sm-4">
+                    <div class="skill-item second-skill-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0s">
+                      <div class="progress" data-percentage="100">
+                        <span class="progress-left">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                          <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                          <div>
+                            {{ criteri[0] }}%<br>
+                            <span>Indice</span>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- segnala button -->
+                      <form action="{{ url_for('notiziaTesto/segnalaNotizia') }}" method="post" autocomplete="off">
+                        <button type="submit" class="btn btn-primary" name="segnalaNotizia">Segnala Notizia</button>
+                        <input type="hidden" name="titoloSegnalazione" value="{{ notiziaInserita.getTitolo() }}">
+                        <input type="hidden" name="urlSegnalazione" value="{{ notiziaInserita.getUrl() }}">
+                      </form>
+                      {% if messSegnalazione == 1: %}
+                      <script> alert("Hai effettuato il logout.") </script>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-sm-4">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- fine div dei risultati -->
+  {% endif %}
+
+
+  {% if fontiAttendibili %}
+  <p style="padding-top: 10px;"></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+          <h4>Ecco a te le <em>fonti attendibili</em>...</h4>
+          <div class="line-dec"></div>
+          {% for fonte in fontiAttendibili %}
+          <p>
+            <a href="{{ fonte.getUrlSito() }}" target="_blank">
+              {{ loop.index}}. {{ fonte.getNome() }}
+            </a>
+          </p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+
+
+
+
+  <!-- Gigantic Heading -->
+
+
+  {% if msgNotNotizie:%}
+  <p><i>{{msgNotNotizie}}</i></p>
+  {% endif %}
+
+
+  {% if notizieAnaloghe %}
+  <p style="padding-top: 10px;"></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+          <h4>Ecco a te le <em>notizie analoghe</em>...</h4>
+          <div class="line-dec"></div>
+          {% for notizie in notizieAnaloghe %}
+          {% if notizie.getUrl() != is_valid_url %}
+          <p>
+            <a href="{{ notizie.getUrl() }}" target="_blank">
+              {{ loop.index}}. {{ notizie.getTitolo() }}
+            </a>
+          </p>
+          {% endif %}
+
+          {% endfor %}
+
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+
+
+
+  <div id="services" class="services section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+            <h6>I nostri criteri</h6>
+            <h4>Come valutiamo le <em>notizie</em></h4>
+            <div class="line-dec"></div>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="naccs">
+            <div class="grid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="menu">
+                    <div class="first-thumb active">
+                      <div class="thumb">
+                        <span class="icon"><img src="../static/assetNotiziaTestuale/images/service-icon-01.png"
+                            alt=""></span>
+                        Google Fact
+                      </div>
+                    </div>
+                    <div>
+                      <div class="thumb">
+                        <span class="icon"><img src="../static/assetNotiziaTestuale/images/service-icon-02.png"
+                            alt=""></span>
+                        Modello analisi
+                      </div>
+                    </div>
+                    <div>
+                      <div class="thumb">
+                        <span class="icon"><img src="../static/assetNotiziaTestuale/images/service-icon-03.png"
+                            alt=""></span>
+                        URL Analysis
+                      </div>
+                    </div>
+                    <div>
+                      <div class="thumb">
+                        <span class="icon"><img src="../static/assetNotiziaTestuale/images/service-icon-04.png"
+                            alt=""></span>
+                        Debunking check
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <ul class="nacc">
+                    <li class="active">
+                      <div>
+                        <div class="thumb">
+                          <div class="row">
+                            <div class="col-lg-6 align-self-center">
+                              <div class="left-text">
+                                <h4>Google Fact Check</h4>
+                                <p>E' un servizio offerto da Google che permette di ottenere delle informazioni sulla veridicità di una notizia</p>
+                                <p>Il nostro sistema si avvale dell'utilizzo di questo checker come uno tra i diversi criteri di
+                                  valutazione.</p>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 align-self-center">
+                              <div class="right-image">
+                                <img src="../static/assetNotiziaTestuale/images/factCheck.png" alt="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <div class="thumb">
+                          <div class="row">
+                            <div class="col-lg-6 align-self-center">
+                              <div class="left-text">
+                                <h4>Modello di analisi</h4>
+                                <p>E' stato utilizzato un modello di analisi testuale che sfrutta l'intelligenza artificiale per determinare la veridicità del testo</p>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 align-self-center">
+                              <div class="right-image">
+                                <img src="../static/assetNotiziaTestuale/images/services-image-02.jpg" alt="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <div class="thumb">
+                          <div class="row">
+                            <div class="col-lg-6 align-self-center">
+                              <div class="left-text">
+                                <h4>URL Analysis</h4>
+                                <p>Viene effettuato un controllo sull'affidabilità dell'url inserito</p>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 align-self-center">
+                              <div class="right-image">
+                                <img src="../static/assetNotiziaTestuale/images/services-image-03.jpg" alt="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <div class="thumb">
+                          <div class="row">
+                            <div class="col-lg-6 align-self-center">
+                              <div class="left-text">
+                                <h4>Debunking check</h4>
+                                <p>La notizia inserita viene cercata sui migliori siti di debunking per verificare la sua veridicità</p>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 align-self-center">
+                              <div class="right-image">
+                                <img src="../static/assetNotiziaTestuale/images/services-image-04.jpg" alt="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2022 Software Chasers, All Rights Reserved.
+            <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer> -->
+
+  <!-- Scripts -->
+  <script src="../static/assetNotiziaTestuale/vendor/jquery/jquery.min.js"></script>
+  <script src="../static/assetNotiziaTestuale/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/assetNotiziaTestuale/js/owl-carousel.js"></script>
+  <script src="../static/assetNotiziaTestuale/js/animation.js"></script>
+  <script src="../static/assetNotiziaTestuale/js/imagesloaded.js"></script>
+  <script src="../static/assetNotiziaTestuale/js/custom.js"></script>
+
+</body>
+
+</html>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='loginstyle.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	</head>
+	<body class="loggedin">
+        {% if not session['loggedin']: %}
+            <script> alert("Non sei loggato.") </script> 
+        {% endif %}
+		 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+			<a href="{{ url_for('notizia')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+				<h2 class="m-0 text-primary"><img src="/static/logo.png" alt="logo" style="width: 60px;">Misinformation Fight System</h2>
+			</a>
+			<button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<div class="navbar-nav ms-auto p-4 p-lg-0">
+					<a href="{{ url_for('notizia')}}" class="nav-item nav-link active">Home</a>
+					<div class="nav-item dropdown">
+						<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tipo notizia</a>
+						<div class="dropdown-menu fade-down m-0">
+							<a href="{{ url_for('notiziaTesto')}}" class="dropdown-item">Testo/URL</a>
+							<a href="{{ url_for('notiziaImmagine')}}" class="dropdown-item">Immagine</a>
+							<a href="{{ url_for('notiziaAudio')}}" class="dropdown-item">Audio</a>
+							<a href="{{ url_for('notiziaVideo')}}" class="dropdown-item">Video</a>
+						</div>
+					</div>
+					<a href="{{ url_for('contact') }}" class="nav-item nav-link">Contact</a>
+					<a href="{{ url_for('logout')}}" class="nav-item nav-link">Logout</a>
+				</div>
+			</div>
+		</nav>
+		<div class="content">
+			{% block content %}{% endblock %}
+		</div>
+	</body>
+</html>

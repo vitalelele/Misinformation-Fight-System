@@ -1,0 +1,63 @@
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.upload-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.upload-wrapper input[type="file"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.upload-wrapper label {
+    display: block;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.upload-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    margin-right: 10px;
+    vertical-align: middle;
+    mask-image: url('upload.svg');
+    mask-size: cover;
+    mask-repeat: no-repeat;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

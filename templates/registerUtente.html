@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MFS - Registrazione utente</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="../static/assetsLogin/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="../static/assetsLogin/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Registrati come <i><u>utente</u></i>.</h2>
+                        <form action="{{ url_for('registerUtente') }}" method="POST" class="register-form" id="register-form" autocomplete="off">
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi">⚫</i></label>
+                                <input type="nome" name="nome" placeholder="Nome" id="nome" value="{{ nome }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi">⚫</i></label>
+                                <input type="cognome" name="cognome" placeholder="Cognome" id="cognome" value="{{ cognome }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-account"></i></label>
+                                <input type="username" name="username" placeholder="Username" id="username" value="{{ username }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" placeholder="Email" id="email" value="{{ email }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                 <input type="password" name="password" placeholder="Password" id="password" required>
+                            </div>
+                            {% if msg: %}
+                            <p>{{ msg }}</p>
+                            {% endif %}
+                            <!-- <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term" required><span><span></span></span>Accetto tutti i termini in  <a href="#" class="term-service">Termini di Servizio</a></label>
+                            </div> -->
+                            <a href="{{ url_for('contact') }}" class="signup-image-link">Hai dubbi? Contattaci ora.</a>
+                            <div class="form-group form-button">
+                                <input type="submit" value="Register" id="signup" class="form-submit">
+                            </div>
+                        </form> <!-- end form section -->
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="../static/assetsLogin/images/signup-image.jpg" alt="sing up image"></figure>
+                        <a href="{{ url_for('login') }}" class="signup-image-link">Sono già membro.</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+    <!-- JS -->
+    <script src="../static/assetsLogin/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/assetsLogin/js/main.js"></script>
+</body>
+</html>

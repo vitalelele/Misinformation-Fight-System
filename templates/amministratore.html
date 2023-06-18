@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Misinformation Fight System - Amministratore</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/amministratoreTemplate/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../static/amministratoreTemplate/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../static/amministratoreTemplate/assets/css/templatemo-digimedia-v3.css">
+    <link rel="stylesheet" href="../static/amministratoreTemplate/assets/css/animated.css">
+    <link rel="stylesheet" href="../static/amministratoreTemplate/assets/css/owl.css">
+
+  </head>
+
+
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo">
+              <img src="../static/amministratoreTemplate/assets/images/logo-v3.png" alt="">
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <!-- <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="#about">About</a></li>
+              <li class="scroll-to-section"><a href="#services">Services</a></li>
+              <li class="scroll-to-section"><a href="#portfolio">Projects</a></li>
+              <li class="scroll-to-section"><a href="#blog">Blog</a></li>
+              <li class="scroll-to-section"><a href="#contact">Contact</a></li>  -->
+              <li class="scroll-to-section"><div class="border-first-button"><a href="{{ url_for('logout')}}">Logout</a></div></li> 
+            </ul>        
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6 align-self-center">
+              <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h6>Ciao {{ session['username']}}</h6>
+                    <h2>è bello rivederti.</h2>
+                                        <p>Da qui potrai effettuare tutte le operazioni disponibili per l'amministratore di sistema.</p>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="border-first-button scroll-to-section">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                <img src="../static/amministratoreTemplate/assets/images/slider-dec-v3.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+
+  <div class="container" >
+    <div class="container"> 
+    <h4> <b>Visualizza le richieste dei giornalisti</b> </h4>
+    <div>
+        <form action="{{ url_for('amministratore') }}" method="post">
+            <center>
+                <input type="submit" class="btn btn-outline-info" name="submitButton" value="Stampa giornalisti">
+                <!-- <input type="submit" class="btn btn-outline-dark" name="submitButton" value="Chiudi lista"> -->
+            </center>
+        </form> 
+    </div>
+    <p style="padding-bottom: 15px;"></p>
+
+    <div>
+      <div class="table-responsive">
+        {% if not msgNoGiornalisti:%}
+        <table class="table table-striped table-bordered table-hover table-responsive" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Cognome</th>
+                    <th scope="col">Matricola</th>
+                    <th scope="col">Codice Fiscale</th>
+                    <th scope="col">Regione</th>
+                    <th scope="col">Accetta/Rifiuta</th>
+                </tr>
+            </thead>
+            {% for giornalista in allGiornalisti: %}
+            <form action="{{url_for('amministratore')}}" , method="POST">
+                <tr>
+                    <td>{{ giornalista['id'] }}</td>
+                    <td>{{ giornalista['nome'] }}</td>
+                    <td>{{ giornalista['cognome'] }}</td>
+                    <td>{{ giornalista['matricola'] }}</td>
+                    <td>{{ giornalista['codiceFiscale'] }}</td>
+                    <td>{{ giornalista['regione'] }}</td>
+                    <td>
+                        <center>
+                            <input type="submit" class="btn btn-success" name="submitButton" value="Accetta">
+                            <input type="hidden" name="idGiornalista" placeholder="idGiornalista"
+                                value="{{ giornalista['id'] }}">
+                            <input type="submit" class="btn btn-danger" name="submitButton" value="Rifiuta">
+                            <input type="hidden" name="idGiornalista" placeholder="idGiornalista"
+                                value="{{ giornalista['id'] }}">
+                        </center>
+                    </td>
+                </tr>
+            </form>
+            {% endfor %}
+        </table>
+      </div>
+        {% endif %}
+    </div>
+  </div> <!-- end container --> 
+  </div>
+
+  {% if msgOk: %}
+  <p>Il giornalista <b>{{nomeGiornalista}}</b> è stato <i><u>{{msgOk}}</u></i></p>
+  {% endif %}
+
+  <!-- Segnalazioni -->
+  <div class="container" > 
+    <div class="container"> 
+    <h4> <b>Visualizza le richieste di segnalazioni</b> </h4>
+  <form action="{{ url_for('amministratore') }}" method="post">
+    <center>
+        <input type="submit" class="btn btn-outline-info" name="submitButton" value="Stampa segnalazioni">
+    </center>
+  </form> 
+
+
+  </div>
+  </div> <!-- end container segnalazioni -->
+  <br>
+<!-- table segnalazioni -->
+<div class="table-responsive table-sm">
+  {% if not msgNoSegnalazioni:%}
+  <table class="table table-striped table-bordered table-hover table-responsive" style="text-align: center;">
+      <thead>
+          <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Contenuto</th>
+              <th scope="col">URL</th>
+              <th scope="col">Counter</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Accetta/Rifiuta</th>
+          </tr>
+      </thead>
+      {% for segnalazione in allSegnalazioni: %}
+      <form action="{{url_for('amministratore')}}" , method="POST">
+          <tr>
+              {% if segnalazione['tipo'] == "testo": %}
+                <td>{{ segnalazione['idSegnalazione'] }}</td>
+                <td>{{ segnalazione['contenutoNotizia'] }}</td>
+                <td>{{ segnalazione['urlNotizia'] }}</td>
+                <td>{{ segnalazione['counter'] }}</td>
+                <td>{{ segnalazione['tipo'] }}</td>
+              {% endif %}
+              {% if segnalazione['tipo'] == "immagine": %}
+                <td>{{ segnalazione['idSegnalazione'] }}</td>
+                <td><img src="{{ segnalazione['urlNotizia'] }}" width="80" height="80"></td>
+                <td><a href="{{ segnalazione['urlNotizia'] }}">{{ segnalazione['urlNotizia'] }}</a></td>
+                <td>{{ segnalazione['counter'] }}</td>
+                <td>{{ segnalazione['tipo'] }}</td>
+              {% endif %}
+              {% if segnalazione['tipo'] == "audio": %}
+              <td>{{ segnalazione['idSegnalazione'] }}</td>
+              <td>{{ segnalazione['contenutoNotizia'] }}</td>
+              <td>{{ segnalazione['urlNotizia'] }}</td>
+              <td>{{ segnalazione['counter'] }}</td>
+              <td>{{ segnalazione['tipo'] }}</td>
+              {% endif %}
+              {% if segnalazione['tipo'] == "video": %}
+                <td>{{ segnalazione['idSegnalazione'] }}</td>
+                <td></td>
+                <td><a href="{{ segnalazione['urlNotizia'] }}">{{ segnalazione['urlNotizia'] }}</a></td>
+                <td>{{ segnalazione['counter'] }}</td>
+                <td>{{ segnalazione['tipo'] }}</td>
+              {% endif %}
+              <td style="padding: 15px;">
+                  <center>
+                      <input style="padding-bottom: 10px;" type="submit" class="btn btn-success" name="submitButton" value="Accetta Segnalazione" >
+                      <input type="hidden" name="idSegnalazione" value="{{ segnalazione['idSegnalazione'] }}">
+                      
+                      <input type="submit" class="btn btn-danger" name="submitButton" value="Rifiuta Segnalazione">
+                      <input type="hidden" name="idSegnalazione" value="{{ segnalazione['idSegnalazione'] }}">
+                  </center>
+              </td>
+          </tr>
+      </form>
+      {% endfor %}
+  </table>
+</div>
+  {% endif %}
+</div>
+{% if msgOkSegn: %}
+<p>La segnalazione è stata <i><u>{{msgOkSegn}}</u></i></p>
+{% endif %}
+
+{% if msgNoSegnalazioni: %}
+<p class="font-weight-light text-danger">Non ci sono <b><u>altre segnalazioni</u></b> in lista.</u></i></p>
+{% endif %}
+
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2023 Software Chasers. All Rights Reserved. 
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <script src="../static/amministratoreTemplate/vendor/jquery/jquery.min.js"></script>
+  <script src="../static/amministratoreTemplate/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/amministratoreTemplate/assets/js/owl-carousel.js"></script>
+  <script src="../static/amministratoreTemplate/assets/js/animation.js"></script>
+  <script src="../static/amministratoreTemplate/assets/js/imagesloaded.js"></script>
+  <script src="../static/amministratoreTemplate/assets/js/custom.js"></script>
+
+</body>
+</html>
