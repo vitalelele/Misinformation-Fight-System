@@ -1,36 +1,13 @@
-<h1>Misinformation Fight System</h1>
-Per esguire il codice bisogna aver isntallato sul proprio computer Python (consigliabile la versione 3.10.9). Per installare python consultare la guida: https://www.python.org/downloads/ .
-Dopo aver installato pyhon consigliamo di creare e attiavre un ambiente virtuale seguendo questi passaggi:
-1) Da terminale, nella directory del programma, eseguire: python3 -m venv venv
-2) Attivare l'ambiente virtuale: 
-	-windows: venv\Scripts\activate
-	-macOS\Linux: source venv/bin/activate
-Attivato l'ambiente virtuale installare le seguneti librerie di python, necessarie per il funzionamento del programma:
-	-Flask: pip install flask
-	-pymysql: pip install pymysql
-	-GoogleNews: pip install GoogleNews
-	-Requests: pip install requests
-	-Spacy: pip install spacy
-	-Pacchetto italiano spacy: python -m spacy download it_core_news_sm
-	-Googletrans: pip install googletrans==3.1.0a0
-	-Transformers: pip install transformers
-	-Validators: pip install validators
-	-TensorFlow: pip install TensorFlow 
-	-PyTorch: pip install torch
-	-Google Search Results: pip install google-search-results
-	-Pillow: pip install pillow
-	-Pydub: pip install pydub
-	-Speech Recognition: pip install SpeechRecognition
-	-Pathlib: pip install pathlib
-	-Pytube: pip install pytube
-	-Openc Cv: pip install opencv-python
-Successivamente bisogna installare il DBMS mysql: https://dev.mysql.com/downloads/mysql/
-Installato mysql si dovrà eseguire lo script per creare il database dell'applicazione:
-	-avviare il server mysql
-	-da terminale lanciare il comando:  mysql -u root -p
-	-lanciare il comando (utilizzando il vostro percorso per il file): source path/to/script/file/misinformationfightsystem.sql;
-	-modificare la password nel file dataAccessObject.py
-Per esguire l'applicazione utilizzare il seguente comando: python app.py
+<html>
+<body>
+<h1> 📰 Misinformation Fight System</h1>
+<p>Il sistema software <i>"MISINFORMATION FIGHT SYSTEM"</i> ha come obiettivo analizzare e stabilire la veridicità di notizie multimediali per contrastare la rapida diffusione di fake news.
+Ogni utente del sistema software potrà fornire in input una notizia in forma multimediale: un testo, un video, un’immagine oppure una traccia audio.
+Il sistema utilizzerà diversi criteri per verificare la veridicità di una notizia per esempio identificare i soggetti coinvolti oppure effettuare dei controlli sulla fonte della notizia in questione.
+Si prevede inoltre un sistema di segnalazione che permette all'utente di segnalare una notizia da lui ritenuta falsa, queste segnalazioni saranno gestite dal software, ove fossero ingenti si procederà alla verifica della notizia in questione, in questo modo le capacità del sistema miglioreranno grazie all’aiuto dell’utente.
+Il software procede infine a fornire un rating di attendibilità della notizia oltre ad una spiegazione che la supporti. Per aiutare l’utente nella lotta alla disinformazione il sistema fornisce ulteriori fonti e notizie ritenute attendibili. 
+</p>
+
 
 
 <h1>🌐 Collaborators:</h1>
@@ -59,5 +36,86 @@ Per esguire l'applicazione utilizzare il seguente comando: python app.py
 
 	
 </ul>
+
+
+<h1>👨‍💻 Come eseguire il software:</h1>
+<p>
+Per esguire il codice bisogna aver installato sul proprio computer Python (consigliabile la versione 3.10.9). 
+Per installare python consultare la guida: <i>https://www.python.org/downloads/</i><br>
+Dopo aver installato pyhon consigliamo di creare e attiavre un ambiente virtuale seguendo questi passaggi:
+</p>
+
+Da terminale, nella directory del programma, eseguire: <i>python3 -m venv venv</i>
+
+Attivare l'ambiente virtuale: <br><br>
+<b>Windows</b> 
+	
+	venv\Scripts\activate
+	
+<b>MacOS\Linux</b> 	
+		
+	source venv/bin/activate
+
+  <br>
+		
+ <p>Attivato l'ambiente virtuale installare le seguneti librerie di python, necessarie per il funzionamento del software:</p>
+ 
+ 	Flask: 
+  		pip install flask
+	pymysql: 
+ 		pip install pymysql
+	GoogleNews: 
+ 		pip install GoogleNews
+	Requests: 
+ 		pip install requests
+	Spacy: 
+ 		pip install spacy
+	Pacchetto italiano spacy: 
+ 		python -m spacy download it_core_news_sm
+	Googletrans: 
+ 		pip install googletrans==3.1.0a0
+	Transformers: 
+ 		pip install transformers
+	Validators: 
+ 		pip install validators
+	TensorFlow: 
+ 		pip install TensorFlow 
+	PyTorch: 
+ 		pip install torch
+	Google Search Results: 
+ 		pip install google-search-results
+	Pillow: 
+ 		pip install pillow
+	Pydub: 
+ 		pip install pydub
+	Speech Recognition: 
+ 		pip install SpeechRecognition
+	Pathlib: 
+ 		pip install pathlib
+	Pytube: 
+ 		pip install pytube
+	Openc Cv: 
+ 		pip install opencv-python
+   
+<p>Successivamente bisogna installare il DBMS MySQL: <p>
+	https://dev.mysql.com/downloads/mysql/
+ 
+<p>Installato MySQL si dovrà eseguire lo script per creare il database dell'applicazione:</p>
+<ol>
+<li> Avviare il server MySQL </li>
+<li> Da terminale lanciare il comando:  
+	
+	mysql -u root -p 
+ 
+<li> Lanciare il comando (<i>utilizzando il vostro percorso per il file</i>): 
+	
+	source path/to/script/file/misinformationfightsystem.sql;
+<li> Modificare la password nel file <i>dataAccessObject.py</i> </li>
+ </ol>
+<h4>Per esguire l'applicazione utilizzare il seguente comando: </h4>
+
+	python app.py
+</body>
+</html>
 
 
