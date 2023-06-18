@@ -42,7 +42,7 @@ Il software procede a fornire un rating di attendibilità della notizia oltre ad
 <p>
 Per esguire il codice bisogna aver installato sul proprio computer Python (consigliabile la versione 3.10.9). 
 Per installare python consultare la guida: <i>https://www.python.org/downloads/</i><br>
-Dopo aver installato pyhon consigliamo di creare e attiavre un ambiente virtuale seguendo questi passaggi:
+Dopo aver installato python consigliamo di creare e attivare un ambiente virtuale seguendo questi passaggi:
 </p>
 
 Da terminale, nella directory del programma, eseguire: <i>python3 -m venv venv</i>
