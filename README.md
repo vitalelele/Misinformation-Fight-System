@@ -1,11 +1,11 @@
 <html>
 <body>
 <h1> 📰 Misinformation Fight System</h1>
-<p>Il sistema software <i>"MISINFORMATION FIGHT SYSTEM"</i> ha come obiettivo analizzare e stabilire la veridicità di notizie multimediali per contrastare la rapida diffusione di fake news.
+<p>Il sistema software <i>"MISINFORMATION FIGHT SYSTEM"</i> ha come obiettivo analizzare e stabilire la veridicità di notizie multimediali per contrastare la rapida diffusione di fake news.<br>
 Ogni utente del sistema software potrà fornire in input una notizia in forma multimediale: un testo, un video, un’immagine oppure una traccia audio.
-Il sistema utilizzerà diversi criteri per verificare la veridicità di una notizia per esempio identificare i soggetti coinvolti oppure effettuare dei controlli sulla fonte della notizia in questione.
-Si prevede inoltre un sistema di segnalazione che permette all'utente di segnalare una notizia da lui ritenuta falsa, queste segnalazioni saranno gestite dal software, ove fossero ingenti si procederà alla verifica della notizia in questione, in questo modo le capacità del sistema miglioreranno grazie all’aiuto dell’utente.
-Il software procede infine a fornire un rating di attendibilità della notizia oltre ad una spiegazione che la supporti. Per aiutare l’utente nella lotta alla disinformazione il sistema fornisce ulteriori fonti e notizie ritenute attendibili. 
+<br>Il sistema utilizzerà diversi criteri per verificare la veridicità di una notizia per esempio identificare i soggetti coinvolti oppure effettuare dei controlli sulla fonte della notizia in questione.<br>
+Si prevede inoltre un sistema di segnalazione che permette all'utente di segnalare una notizia da lui ritenuta falsa, queste segnalazioni saranno gestite dal software, ove fossero ingenti si procederà alla verifica della notizia in questione, in questo modo le capacità del sistema miglioreranno grazie all’aiuto dell’utente.<br>
+Il software procede a fornire un rating di attendibilità della notizia oltre ad una spiegazione che la supporti. <br>Per aiutare l’utente nella lotta alla disinformazione il sistema fornisce ulteriori fonti e notizie ritenute attendibili. 
 </p>
 
 
