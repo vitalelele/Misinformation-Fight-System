@@ -57,8 +57,12 @@ Attivare l'ambiente virtuale: <br><br>
 	source venv/bin/activate
 
   <br>
+
+  <p>Per installare le librerie necessarie al funzionamento, posizionarsi all'interno della cartella di Misiformation Fight System e lanciare il seguente comando:</p>
+
+  	pip install -r requirements.txt
 		
- <p>Attivato l'ambiente virtuale installare le seguenti librerie di python, necessarie per il funzionamento del software:</p>
+ <p>Le librerie utilizzate singolarmente sono le seguenti:</p>
  
  	Flask: 
   		pip install flask
